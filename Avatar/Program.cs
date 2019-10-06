@@ -30,7 +30,7 @@ namespace Avatar
             Console.WriteLine();
             Console.WriteLine("Имя - {0}, хэш - {1}", name, hex);
      
-            Bitmap bmp = new Bitmap(250, 250);
+            Bitmap bmp = new Bitmap(260, 260);
             Brush Brush = new SolidBrush(ColorTranslator.FromHtml($"#{hex.Substring(0, 6)}")) ; // устанавливаем цвет
 
             List<bool> FillOrNot = new List<bool>();
@@ -60,32 +60,31 @@ namespace Avatar
 
             using (Graphics gr = Graphics.FromImage(bmp))
             {
-                gr.FillRectangle(Brushes.White, new Rectangle(0, 0, 250, 250));
+                gr.FillRectangle(Brushes.White, new Rectangle(0, 0, 260, 260));
                 for (int i = 0; i < 15; i++)
                 {
                     if( (i % 5) != 0 || i == 0 )
                     {
                         if (FillOrNot[i])
                         {
-                            gr.FillRectangle(Brush, new Rectangle(coordX, coordY + ((i % 5) * 50), 50, 50));
-                            gr.FillRectangle(Brush, new Rectangle((250-(50*rowNumber)), coordY + ((i % 5) * 50), 50, 50));
+                            gr.FillRectangle(Brush, new Rectangle(coordX, coordY + ((i % 5) * 52), 52, 52));
+                            gr.FillRectangle(Brush, new Rectangle((260-(52*rowNumber)), coordY + ((i % 5) * 52), 52, 52));
                         }
                     }
                     else
                     {
-                        coordX += 50;
+                        coordX += 52;
                         rowNumber++;
                         coordY = 0;
 
                         if (FillOrNot[i])
                         {
-                            gr.FillRectangle(Brush, new Rectangle(coordX, coordY + ((i % 5) * 50), 50, 50));
-                            gr.FillRectangle(Brush, new Rectangle((250 - (50 * rowNumber)), coordY + ((i % 5) * 50), 50, 50));
+                            gr.FillRectangle(Brush, new Rectangle(coordX, coordY + ((i % 5) * 52), 52, 52));
+                            gr.FillRectangle(Brush, new Rectangle((260 - (52 * rowNumber)), coordY + ((i % 5) * 52), 52, 52));
                         }                       
                     }
                 }
             }
-
 
             bmp.Save($"D://Avatar{name}.png");
             Console.WriteLine("Ваш аватар сгенерирован и сохранен!");
